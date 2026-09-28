@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #09090b;
+  --surface: #121214;
+  --elevated: #1a1a1e;
+  --fg: #f4f4f5;
+  --fg-muted: #a1a1aa;
+  --fg-subtle: #71717a;
+  --border: rgb(255 255 255 / 0.08);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --accent: #8ec8c4;
+  --accent-fg: #0a0a0b;
+  --danger: #c47a72;
+  --chart-1: #8ec8c4;
+  --chart-2: #c4b4a0;
+  --chart-3: #a8b4c8;
+  --chart-4: #b8c4b0;
+  --chart-5: #c8b8c0;
+  --grid-line: rgb(255 255 255 / 0.1);
+  --shadow-border: 0 0 0 1px rgb(255 255 255 / 0.08);
+  --shadow-border-hover: 0 0 0 1px rgb(255 255 255 / 0.14);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-sans: "Outfit", "Segoe UI", system-ui, sans-serif;
+
+  --tracking-display: -0.03em;
+
+  --motion-stagger: 40ms;
+  --motion-micro: 80ms;
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+  --motion-medium: 350ms;
+  --motion-slow: 400ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-theme="light"] {
+  --bg: #f3f1ec;
+  --surface: #fbfaf7;
+  --elevated: #eceae4;
+  --fg: #1c1c1f;
+  --fg-muted: #5c5c63;
+  --fg-subtle: #8a8a92;
+  --border: rgb(20 20 24 / 0.08);
+  --border-strong: rgb(20 20 24 / 0.16);
+  --accent: #2f6f6b;
+  --accent-fg: #fbfaf7;
+  --danger: #a3544c;
+  --chart-1: #2f6f6b;
+  --chart-2: #8a6f52;
+  --chart-3: #4d5e78;
+  --chart-4: #5a6d58;
+  --chart-5: #7a5e6a;
+  --grid-line: rgb(20 20 24 / 0.1);
+  --shadow-border:
+    0 0 0 1px rgb(20 20 24 / 0.06),
+    0 1px 2px -1px rgb(20 20 24 / 0.06),
+    0 2px 4px 0 rgb(20 20 24 / 0.04);
+  --shadow-border-hover:
+    0 0 0 1px rgb(20 20 24 / 0.1),
+    0 1px 2px -1px rgb(20 20 24 / 0.08);
+}
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-fg: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-subtle: var(--fg-subtle);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-danger: var(--danger);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.radar-grid-line {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: radar-draw var(--motion-slow) var(--ease-smooth-out) forwards;
+}
+
+.radar-stroke {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: radar-draw 700ms var(--ease-smooth-out) forwards;
+}
+
+.radar-label {
+  opacity: 0;
+  animation: radar-fade-up var(--motion-fast) var(--ease-out) forwards;
+}
+
+.radar-plate {
+  transform-origin: 270px 270px;
+  animation: radar-plate-in var(--motion-slow) var(--ease-smooth-out) both;
+}
+
+.radar-fill {
+  animation: radar-breathe 4.8s ease-in-out infinite;
+}
+
+@keyframes radar-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes radar-fade-up {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes radar-plate-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes radar-breathe {
+  0%,
+  100% {
+    fill-opacity: var(--fill-o);
+  }
+  50% {
+    fill-opacity: var(--fill-o-hi);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radar-grid-line,
+  .radar-stroke,
+  .radar-label,
+  .radar-plate,
+  .radar-fill {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: none;
+  }
+}
