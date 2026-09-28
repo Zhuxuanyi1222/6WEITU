@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "HEXA",
+      "hasCanvas": false,
+      "bodyTextLen": 246,
+      "bodyTextHash": "89a9ba1c37bf1c07b5370fffaafb34acb63d4e5290d964ad62189becdbc0dece",
+      "bodyTextPrefix": "RADAR STUDIO HEXA 随机 回放 导出 导入 82 74 68 88 61 77 创造力 执行力 沟通协作 学习成",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "HEXA",
+      "hasCanvas": false,
+      "bodyTextLen": 246,
+      "bodyTextHash": "89a9ba1c37bf1c07b5370fffaafb34acb63d4e5290d964ad62189becdbc0dece",
+      "bodyTextPrefix": "RADAR STUDIO HEXA 随机 回放 导出 导入 82 74 68 88 61 77 创造力 执行力 沟通协作 学习成",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
